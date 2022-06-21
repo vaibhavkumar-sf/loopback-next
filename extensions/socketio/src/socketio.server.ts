@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2019,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2019,2020. All Rights Reserved.
 // Node module: @loopback/socketio
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -152,9 +152,9 @@ export class SocketIoServer extends Context {
       this.app.bind(getNamespaceKeyForName(meta.name)).to(nsp);
     }
 
-    nsp.on('connection', socket =>
-      this.createSocketHandler(controllerClass)(socket),
-    );
+    nsp.on('connection', async socket => {
+      await this.createSocketHandler(controllerClass)(socket);
+    });
     return nsp;
   }
 
@@ -164,7 +164,7 @@ export class SocketIoServer extends Context {
    */
   private createSocketHandler(
     controllerClass: Constructor<object>,
-  ): (socket: Socket) => void {
+  ): (socket: Socket) => Promise<void> {
     return async socket => {
       debug(
         'SocketIo connected: id=%s namespace=%s',

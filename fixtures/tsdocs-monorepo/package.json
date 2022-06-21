@@ -1,18 +1,18 @@
 {
   "name": "@loopback/tsdocs-monorepo",
   "description": "A monorepo for tsdocs testing",
-  "version": "0.2.4",
+  "version": "0.3.1",
   "private": true,
   "license": "MIT",
-  "author": "IBM Corp.",
-  "copyright.owner": "IBM Corp.",
+  "author": "IBM Corp. and LoopBack contributors",
+  "copyright.owner": "IBM Corp. and LoopBack contributors",
   "repository": {
     "type": "git",
     "url": "https://github.com/loopbackio/loopback-next.git",
     "directory": "fixtures/tsdocs-monorepo"
   },
   "engines": {
-    "node": "12 || 14 || 16 || 17",
+    "node": "14 || 16 || 17 || 18",
     "npm": ">=7"
   },
   "scripts": {
@@ -23,6 +23,6 @@
     "postinstall": "npm run build"
   },
   "devDependencies": {
-    "@loopback/build": "^8.1.2"
+    "@loopback/build": "^9.0.1"
   }
 }

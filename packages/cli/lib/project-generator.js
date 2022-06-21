@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2017,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2017,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -200,12 +200,12 @@ module.exports = class ProjectGenerator extends BaseGenerator {
         message: g.f('Select features to enable in the project'),
         type: 'checkbox',
         choices: choices,
+        default: choices.map(c => c.short),
         // Skip if all features are enabled by cli options
         when: choices.length > 0,
       },
     ];
-    return this.prompt(prompts).then(props => {
-      const settings = props.settings || choices.map(c => c.short);
+    return this.prompt(prompts).then(({settings}) => {
       const features = choices.map(c => {
         return {
           key: c.key,

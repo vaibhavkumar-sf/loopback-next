@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2017,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2017,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -55,18 +55,18 @@ exports.executeGenerator = function (GeneratorOrNamespace, settings) {
  * testing.
  *
  * @param {string} rootDir Root directory in which to create the project
- * @param {Object} options
- * @property {boolean} excludeLoopbackCore Excludes the '@loopback/core' dependency in package.json
- * @property {boolean} excludePackageJSON Excludes package.json
- * @property {boolean} excludeYoRcJSON Excludes .yo-rc.json
- * @property {boolean} excludeControllersDir Excludes the controllers directory
- * @property {boolean} excludeModelsDir Excludes the models directory
- * @property {boolean} excludeRepositoriesDir Excludes the repositories directory
- * @property {boolean} excludeDataSourcesDir Excludes the datasources directory
- * @property {boolean} includeDummyModel Creates a dummy model file in /src/models/product-review.model.ts
- * @property {boolean} includeDummyRepository Creates a dummy repository file in /src/repositories/bar.repository.ts
- * @property {boolean} includeSandboxFilesFixtures creates files specified in SANDBOX_FILES array
- * @param {array} additionalFiles specify files, directories and their content to be included as fixtures
+ * @param {Object} [options]
+ * @param {Array} [options.additionalFiles] Add additional files
+ * @param {boolean} [options.excludeLoopbackCore] Excludes the '@loopback/core' dependency in package.json
+ * @param {boolean} [options.excludePackageJSON] Excludes package.json
+ * @param {boolean} [options.excludeYoRcJSON] Excludes .yo-rc.json
+ * @param {boolean} [options.excludeControllersDir] Excludes the controllers directory
+ * @param {boolean} [options.excludeModelsDir] Excludes the models directory
+ * @param {boolean} [options.excludeRepositoriesDir] Excludes the repositories directory
+ * @param {boolean} [options.excludeDataSourcesDir] Excludes the datasources directory
+ * @param {boolean} [options.includeDummyModel] Creates a dummy model file in /src/models/product-review.model.ts
+ * @param {boolean} [options.includeDummyRepository] Creates a dummy repository file in /src/repositories/bar.repository.ts
+ * @param {boolean} [options.includeSandboxFilesFixtures] creates files specified in SANDBOX_FILES array
  */
 exports.givenLBProject = function (rootDir, options) {
   options = options || {};

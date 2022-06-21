@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/loopbackio/loopback-next/compare/@loopback/docs@5.0.0...@loopback/docs@5.1.0) (2022-06-13)
+
+
+### Features
+
+* **cli:** add option to create relations in cli discover command ([37a5f73](https://github.com/loopbackio/loopback-next/commit/37a5f73ada12b64035ef32b01411c28d72058887))
+* **cli:** add option to mark id field as not required in discover command ([497b21d](https://github.com/loopbackio/loopback-next/commit/497b21d84d970a8dcc714d059108cabdf99d46e0))
+* **rest-crud:** add option to create readonly rest-crud apis ([6ae1423](https://github.com/loopbackio/loopback-next/commit/6ae142302ca61363a357559ba42243bdaf4f7256))
+
+
+
+
+
+## [5.0.0](https://github.com/loopbackio/loopback-next/compare/@loopback/docs@4.0.4...@loopback/docs@5.0.0) (2022-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove node v12 support
+
+### Features
+
+* add polymorphic relations ([f4b8158](https://github.com/loopbackio/loopback-next/commit/f4b8158387222ec64fe7ef6971da8151f2016dda)), closes [#2487](https://github.com/loopbackio/loopback-next/issues/2487)
+* add support for node v18 ([ccb4c61](https://github.com/loopbackio/loopback-next/commit/ccb4c61307d94ab7bb07a19c547dfc4fa7d388a8))
+* remove node v12 support ([5f66e5b](https://github.com/loopbackio/loopback-next/commit/5f66e5bd288ba806b3aa6550fc29c5009de8b60d))
+* **repository:** support `ReferencesMany` relation ([371a6dc](https://github.com/loopbackio/loopback-next/commit/371a6dcdf32d1a9a674f22528160b775f6639364))
+
+
+
 ## [4.0.4](https://github.com/loopbackio/loopback-next/compare/@loopback/docs@4.0.3...@loopback/docs@4.0.4) (2022-03-29)
 
 

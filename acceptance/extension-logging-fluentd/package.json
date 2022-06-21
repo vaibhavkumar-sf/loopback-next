@@ -1,20 +1,20 @@
 {
   "name": "@loopback/test-extension-logging-fluentd",
   "description": "Acceptance test for `@loopback/logging` with fluentd",
-  "version": "0.8.2",
+  "version": "0.9.1",
   "private": true,
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "IBM Corp.",
-  "copyright.owner": "IBM Corp.",
+  "author": "IBM Corp. and LoopBack contributors",
+  "copyright.owner": "IBM Corp. and LoopBack contributors",
   "repository": {
     "type": "git",
     "url": "https://github.com/loopbackio/loopback-next.git",
     "directory": "acceptance/extension-logging-fluentd"
   },
   "engines": {
-    "node": "12 || 14 || 16 || 17"
+    "node": "14 || 16 || 17 || 18"
   },
   "scripts": {
     "build": "lb-tsc",
@@ -31,13 +31,13 @@
     "!*/__tests__"
   ],
   "devDependencies": {
-    "@loopback/build": "^8.1.2",
-    "@loopback/core": "^3.1.2",
-    "@loopback/eslint-config": "^12.0.4",
-    "@loopback/logging": "^0.8.2",
-    "@loopback/testlab": "^4.1.2",
-    "@types/node": "^12.20.47",
-    "testcontainers": "^8.6.1",
-    "tslib": "^2.3.1"
+    "@loopback/build": "^9.0.1",
+    "@loopback/core": "^4.0.1",
+    "@loopback/eslint-config": "^13.0.1",
+    "@loopback/logging": "^0.9.1",
+    "@loopback/testlab": "^5.0.1",
+    "@types/node": "^14.18.21",
+    "testcontainers": "^8.10.1",
+    "tslib": "^2.4.0"
   }
 }

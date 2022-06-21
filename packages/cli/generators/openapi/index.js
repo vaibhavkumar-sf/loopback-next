@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2018,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2018,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -274,15 +274,14 @@ module.exports = class OpenApiGenerator extends BaseGenerator {
         ),
         type: 'checkbox',
         choices: choices,
+        default: choices.map(c => c.value),
         // Require at least one item to be selected
         // This prevents users from accidentally pressing ENTER instead of SPACE
         // to select an item from the list
         validate: result => !!result.length,
       },
     ];
-    const selections =
-      (await this.prompt(prompts)).controllerSelections ||
-      choices.map(c => c.value);
+    const selections = (await this.prompt(prompts)).controllerSelections;
     this.selectedControllers = this.controllerSpecs.filter(c =>
       selections.some(a => a === c.className),
     );

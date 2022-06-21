@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2019,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2019,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -7,12 +7,11 @@
 
 const path = require('path');
 const {TestSandbox} = require('@loopback/testlab');
-
-const generator = path.join(__dirname, '../../../generators/interceptor');
-const SANDBOX_FILES = require('../../fixtures/interceptor').SANDBOX_FILES;
+const {SANDBOX_FILES} = require('../../fixtures/interceptor');
+const {expectFileToMatchSnapshot} = require('../../snapshots');
 const testUtils = require('../../test-utils');
 
-const {expectFileToMatchSnapshot} = require('../../snapshots');
+const generator = path.join(__dirname, '../../../generators/interceptor');
 
 // Test Sandbox
 const sandbox = new TestSandbox(path.resolve(__dirname, '../.sandbox'));
@@ -40,7 +39,8 @@ describe('lb4 interceptor', () => {
             additionalFiles: SANDBOX_FILES,
           }),
         )
-        .withArguments('myInterceptor');
+        .withArguments('myInterceptor')
+        .withPrompts({group: 'myGroup'});
       expectFileToMatchSnapshot(GENERATED_FILE);
       expectFileToMatchSnapshot(INDEX_FILE);
     });

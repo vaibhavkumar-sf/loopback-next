@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2019,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2019,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -31,6 +31,12 @@ module.exports = class DiscoveryGenerator extends ArtifactGenerator {
       default: true,
     });
 
+    this.option('relations', {
+      type: Boolean,
+      description: g.f('Discover and create relations'),
+      default: false,
+    });
+
     this.option('schema', {
       type: String,
       description: g.f('Schema to discover'),
@@ -49,6 +55,12 @@ module.exports = class DiscoveryGenerator extends ArtifactGenerator {
         'Specify the directory into which the `model.model.ts` files will be placed',
       ),
       default: undefined,
+    });
+
+    this.option('optionalId', {
+      type: Boolean,
+      description: g.f('Boolean to mark id property as optional field'),
+      default: false,
     });
   }
 
@@ -277,16 +289,26 @@ module.exports = class DiscoveryGenerator extends ArtifactGenerator {
     for (let i = 0; i < this.discoveringModels.length; i++) {
       const modelInfo = this.discoveringModels[i];
       debug(`Discovering: ${modelInfo.name}...`);
-      this.artifactInfo.modelDefinitions.push(
-        await modelMaker.discoverSingleModel(
-          this.artifactInfo.dataSource,
-          modelInfo.name,
-          {
-            schema: modelInfo.owner,
-            disableCamelCase: this.artifactInfo.disableCamelCase,
-          },
-        ),
+      const modelDefinition = await modelMaker.discoverSingleModel(
+        this.artifactInfo.dataSource,
+        modelInfo.name,
+        {
+          schema: modelInfo.owner,
+          disableCamelCase: this.artifactInfo.disableCamelCase,
+          associations: this.options.relations,
+        },
       );
+      if (this.options.optionalId) {
+        // Find id properties (can be multiple ids if using composite key)
+        const idProperties = Object.values(modelDefinition.properties).filter(
+          property => property.id,
+        );
+        // Mark as not required
+        idProperties.forEach(property => {
+          property.required = false;
+        });
+      }
+      this.artifactInfo.modelDefinitions.push(modelDefinition);
       debug(`Discovered: ${modelInfo.name}`);
     }
   }
@@ -320,6 +342,46 @@ module.exports = class DiscoveryGenerator extends ArtifactGenerator {
         utils.getModelFileName(modelDefinition.name),
       );
       debug(`Writing: ${fullPath}`);
+
+      if (this.options.relations) {
+        const relationImports = [];
+        const relationDestinationImports = [];
+        const foreignKeys = {};
+        for (const relationName in templateData.settings.relations) {
+          const relation = templateData.settings.relations[relationName];
+          const targetModel = this.artifactInfo.modelDefinitions.find(
+            model => model.name === relation.model,
+          );
+          // If targetModel is not in discovered models, skip creating relation
+          if (targetModel) {
+            Object.assign(templateData.properties[relation.foreignKey], {
+              relation,
+            });
+            relationImports.push(relation.type);
+            relationDestinationImports.push(relation.model);
+
+            foreignKeys[relationName] = {};
+            Object.assign(foreignKeys[relationName], {
+              name: relationName,
+              entity: relation.model,
+              entityKey: Object.entries(targetModel.properties).find(
+                x => x?.[1].id === 1,
+              )?.[0],
+              foreignKey: relation.foreignKey,
+            });
+          }
+        }
+        templateData.relationImports = relationImports;
+        templateData.relationDestinationImports = relationDestinationImports;
+        // Delete relation from modelSettings
+        delete templateData.settings.relations;
+        if (Object.keys(foreignKeys)?.length > 0) {
+          Object.assign(templateData.settings, {foreignKeys});
+        }
+        templateData.modelSettings = utils.stringifyModelSettings(
+          templateData.settings,
+        );
+      }
 
       this.copyTemplatedFiles(
         modelDiscoverer.MODEL_TEMPLATE_PATH,

@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2018,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2018,2020. All Rights Reserved.
 // Node module: @loopback/repository-json-schema
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -397,11 +397,11 @@ function getDescriptionSuffix<T extends object>(
     tsType = `Partial<${tsType}>`;
   }
   if (options.exclude) {
-    const excludedProps = options.exclude.map(p => `'${p}'`);
+    const excludedProps = options.exclude.map(p => `'${String(p)}'`);
     tsType = `Omit<${tsType}, ${excludedProps.join(' | ')}>`;
   }
   if (options.optional) {
-    const optionalProps = options.optional.map(p => `'${p}'`);
+    const optionalProps = options.optional.map(p => `'${String(p)}'`);
     tsType = `@loopback/repository-json-schema#Optional<${tsType}, ${optionalProps.join(
       ' | ',
     )}>`;

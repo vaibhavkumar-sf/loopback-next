@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2019,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2019,2020. All Rights Reserved.
 // Node module: @loopback/http-caching-proxy
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -80,7 +80,7 @@ describe('HttpCachingProxy', () => {
       makeRequest({
         url: 'http://www.mocky.io/v2/5dade5e72d0000a542e4bd9c?mocky-delay=1000ms',
       }),
-    ).to.be.rejectedWith(/502 - "Error: timeout of 1ms exceeded/);
+    ).to.be.rejectedWith(/502 - "AxiosError: timeout of 1ms exceeded/);
   });
 
   it('proxies HTTPs requests (no tunneling)', async function (this: Mocha.Context) {

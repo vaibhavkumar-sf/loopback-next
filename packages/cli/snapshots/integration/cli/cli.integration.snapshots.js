@@ -1309,6 +1309,13 @@ exports[`cli saves command metadata to .yo-rc.json 1`] = `
           "name": "views",
           "hide": false
         },
+        "relations": {
+          "type": "Boolean",
+          "description": "Discover and create relations",
+          "default": false,
+          "name": "relations",
+          "hide": false
+        },
         "schema": {
           "type": "String",
           "description": "Schema to discover",
@@ -1327,6 +1334,13 @@ exports[`cli saves command metadata to .yo-rc.json 1`] = `
           "type": "String",
           "description": "Specify the directory into which the \`model.model.ts\` files will be placed",
           "name": "outDir",
+          "hide": false
+        },
+        "optionalId": {
+          "type": "Boolean",
+          "description": "Boolean to mark id property as optional field",
+          "default": false,
+          "name": "optionalId",
           "hide": false
         }
       },
@@ -1633,6 +1647,14 @@ exports[`cli saves command metadata to .yo-rc.json 1`] = `
           "required": false,
           "description": "A valid base path",
           "name": "basePath",
+          "hide": false
+        },
+        "readonly": {
+          "type": "Boolean",
+          "required": false,
+          "description": "Create readonly APIs",
+          "default": false,
+          "name": "readonly",
           "hide": false
         },
         "config": {

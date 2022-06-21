@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2018,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2018,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -6,18 +6,13 @@
 'use strict';
 
 const path = require('path');
+const {expect, TestSandbox} = require('@loopback/testlab');
 const assert = require('yeoman-assert');
-const testlab = require('@loopback/testlab');
-
-const expect = testlab.expect;
-const TestSandbox = testlab.TestSandbox;
-
-const generator = path.join(__dirname, '../../../generators/repository');
-const SANDBOX_FILES = require('../../fixtures/repository').SANDBOX_FILES;
+const {SANDBOX_FILES} = require('../../fixtures/repository');
 const testUtils = require('../../test-utils');
 
-// Test Sandbox
 const sandbox = new TestSandbox(path.resolve(__dirname, '../.sandbox'));
+const generator = path.join(__dirname, '../../../generators/repository');
 
 describe('lb4 repository', /** @this {Mocha.Suite} */ function () {
   this.timeout(30000);
@@ -232,6 +227,7 @@ describe('lb4 repository', /** @this {Mocha.Suite} */ function () {
     it("does not run when user doesn't select a model", async () => {
       const basicPrompt = {
         dataSourceClass: 'DbmemDatasource',
+        modelNameList: null,
       };
       return expect(
         testUtils

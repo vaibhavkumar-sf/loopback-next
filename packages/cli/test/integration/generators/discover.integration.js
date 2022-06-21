@@ -1,4 +1,4 @@
-// Copyright IBM Corp. 2019,2020. All Rights Reserved.
+// Copyright IBM Corp. and LoopBack contributors 2019,2020. All Rights Reserved.
 // Node module: @loopback/cli
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
@@ -49,6 +49,10 @@ const disableCamelCaseOptions = {
 };
 const missingDataSourceOptions = {
   dataSource: 'foo',
+};
+const optionalIdOptions = {
+  ...baseOptions,
+  optionalId: true,
 };
 
 // Expected File Name
@@ -154,6 +158,20 @@ describe('lb4 discover integration', () => {
           )
           .withOptions(missingDataSourceOptions),
       ).to.be.rejectedWith(/Cannot find datasource/);
+    });
+
+    it('does not mark id property as required based on optionalId option', async () => {
+      await testUtils
+        .executeGenerator(generator)
+        .inDir(sandbox.path, () =>
+          testUtils.givenLBProject(sandbox.path, {
+            additionalFiles: SANDBOX_FILES,
+          }),
+        )
+        .withOptions(optionalIdOptions);
+
+      assert.file(defaultExpectedTestModel);
+      expectFileToMatchSnapshot(defaultExpectedTestModel);
     });
   });
 });

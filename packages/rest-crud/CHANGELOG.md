@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/loopbackio/loopback-next/compare/@loopback/rest-crud@0.14.0...@loopback/rest-crud@0.15.0) (2022-06-13)
+
+
+### Features
+
+* **rest-crud:** add option to create readonly rest-crud apis ([6ae1423](https://github.com/loopbackio/loopback-next/commit/6ae142302ca61363a357559ba42243bdaf4f7256))
+
+
+
+
+
+## [0.14.0](https://github.com/loopbackio/loopback-next/compare/@loopback/rest-crud@0.13.2...@loopback/rest-crud@0.14.0) (2022-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove node v12 support
+
+### Features
+
+* add support for node v18 ([ccb4c61](https://github.com/loopbackio/loopback-next/commit/ccb4c61307d94ab7bb07a19c547dfc4fa7d388a8))
+* remove node v12 support ([5f66e5b](https://github.com/loopbackio/loopback-next/commit/5f66e5bd288ba806b3aa6550fc29c5009de8b60d))
+
+
+
 ## [0.13.2](https://github.com/loopbackio/loopback-next/compare/@loopback/rest-crud@0.13.1...@loopback/rest-crud@0.13.2) (2022-03-29)
 
 **Note:** Version bump only for package @loopback/rest-crud

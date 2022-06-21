@@ -1,7 +1,7 @@
 {
   "name": "@loopback/logging",
   "description": "An extension exposes logging for Winston and Fluentd with LoopBack 4",
-  "version": "0.8.2",
+  "version": "0.9.1",
   "keywords": [
     "LoopBack",
     "Cloud Native",
@@ -12,15 +12,15 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "IBM Corp.",
-  "copyright.owner": "IBM Corp.",
+  "author": "IBM Corp. and LoopBack contributors",
+  "copyright.owner": "IBM Corp. and LoopBack contributors",
   "repository": {
     "type": "git",
     "url": "https://github.com/loopbackio/loopback-next.git",
     "directory": "extensions/logging"
   },
   "engines": {
-    "node": "12 || 14 || 16 || 17"
+    "node": "14 || 16 || 17 || 18"
   },
   "scripts": {
     "build": "lb-tsc",
@@ -40,23 +40,23 @@
     "templates"
   ],
   "peerDependencies": {
-    "@loopback/core": "^3.1.2",
-    "@loopback/rest": "^11.1.2"
+    "@loopback/core": "^4.0.1",
+    "@loopback/rest": "^12.0.1"
   },
   "dependencies": {
     "fluent-logger": "^3.4.1",
     "morgan": "^1.10.0",
-    "tslib": "^2.3.1",
+    "tslib": "^2.4.0",
     "winston": "^3.7.2",
     "winston-transport": "^4.5.0"
   },
   "devDependencies": {
-    "@loopback/build": "^8.1.2",
-    "@loopback/core": "^3.1.2",
-    "@loopback/eslint-config": "^12.0.4",
-    "@loopback/rest": "^11.1.2",
-    "@loopback/testlab": "^4.1.2",
+    "@loopback/build": "^9.0.1",
+    "@loopback/core": "^4.0.1",
+    "@loopback/eslint-config": "^13.0.1",
+    "@loopback/rest": "^12.0.1",
+    "@loopback/testlab": "^5.0.1",
     "@types/morgan": "^1.9.3",
-    "@types/node": "^12.20.47"
+    "@types/node": "^14.18.21"
   }
 }
